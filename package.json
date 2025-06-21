@@ -1,0 +1,18 @@
+{
+  "name": "doordash-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for DoorDash API integration",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["mcp", "doordash", "api"],
+  "author": "amannm",
+  "license": "MIT",
+  "dependencies": {
+    "@doordash/sdk": "^0.6.13",
+    "@modelcontextprotocol/sdk": "^0.6.0"
+  },
+  "type": "module"
+}
