@@ -58,4 +58,14 @@ describe('server handlers', () => {
     expect(JSON.parse(result.content[0].text)).toEqual({ ok: true });
     __setDoorDashClient(null);
   });
+
+  test('update_delivery forwards to client', async () => {
+    const handler = server._requestHandlers.get('tools/call');
+    const mockClient = { updateDelivery: jest.fn().mockResolvedValue({ data: { ok: true } }) };
+    __setDoorDashClient(mockClient);
+    const result = await handler({ method: 'tools/call', params: { name: 'update_delivery', arguments: { external_delivery_id: 'id', foo: 'bar' } } });
+    expect(mockClient.updateDelivery).toHaveBeenCalledWith('id', { foo: 'bar' });
+    expect(JSON.parse(result.content[0].text)).toEqual({ ok: true });
+    __setDoorDashClient(null);
+  });
 });
