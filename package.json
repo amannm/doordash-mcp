@@ -5,14 +5,23 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "lint": "eslint ."
   },
-  "keywords": ["mcp", "doordash", "api"],
+  "keywords": [
+    "mcp",
+    "doordash",
+    "api"
+  ],
   "author": "amannm",
   "license": "MIT",
   "dependencies": {
     "@doordash/sdk": "^0.6.13",
     "@modelcontextprotocol/sdk": "^0.6.0"
   },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "eslint": "^9.29.0",
+    "jest": "^30.0.2"
+  }
 }

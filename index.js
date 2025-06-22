@@ -4,6 +4,7 @@ import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { CallToolRequestSchema, ListToolsRequestSchema } from '@modelcontextprotocol/sdk/types.js';
 import { DoorDashClient } from '@doordash/sdk';
+import { fileURLToPath } from 'url';
 
 const server = new Server(
   {
@@ -19,6 +20,11 @@ const server = new Server(
 
 // Initialize DoorDash client
 let ddClient = null;
+
+// Test helper to override DoorDash client
+function __setDoorDashClient(client) {
+  ddClient = client;
+}
 
 function initializeDoorDashClient() {
   const developerId = process.env.DOORDASH_DEVELOPER_ID;
@@ -263,7 +269,11 @@ async function main() {
   console.error('DoorDash MCP Server running on stdio');
 }
 
-main().catch((error) => {
-  console.error('Server error:', error);
-  process.exit(1);
-});
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  main().catch((error) => {
+    console.error('Server error:', error);
+    process.exit(1);
+  });
+}
+
+export { server, initializeDoorDashClient, __setDoorDashClient };
