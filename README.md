@@ -8,6 +8,8 @@ A minimal Model Context Protocol (MCP) server that bridges the DoorDash Drive AP
 - **create_delivery**: Create new delivery requests
 - **get_delivery**: Check status of existing deliveries
 - **cancel_delivery**: Cancel pending deliveries
+- **accept_delivery_quote**: Accept a quote and optionally include a tip
+- **update_delivery**: Update delivery addresses, times, or other details
 
 ## Prerequisites
 
